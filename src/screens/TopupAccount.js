@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import { StyleSheet, TextInput, View, Alert, TouchableOpacity, Text, Image } from "react-native";
+import { StyleSheet, View, TouchableOpacity, Text, Image } from "react-native";
+import CardView from 'react-native-cardview'
 
-export default class StartScreen extends Component {
+export default class TopupAccount extends Component {
     constructor(props) {
         super(props)
         this.state = {
-
         }
     }
 
@@ -21,23 +21,35 @@ export default class StartScreen extends Component {
         return (
 
             <View style={styles.MainContainer}>
-                {/* <Image source={require('../assets/car.png')} style={styles.img} /> */}
-                <Text style={{ fontSize: 27, color: "#0099ff", textAlign: 'center', marginBottom: 15 }}>Welcome!</Text>
+                <Image source={require('../assets/coverImageOne.jpg')} style={styles.img} />
 
-                <View style={styles.forgotPassword}>
-                    <TouchableOpacity
-                        onPress={this.Forgetpw_Function}>
-                        <Text style={styles.forgot}>Login or Get Started to Continue.</Text>
-                    </TouchableOpacity>
-                </View>
+                <CardView
+                    cardElevation={5}
+                    cardMaxElevation={5}
+                    cornerRadius={10}
+                    style={{
+                        backgroundColor: 'rgb(144, 238, 144)',
+                        padding: 15,
+                        width: "90%",
+                        alignItems: 'center',
+                        marginTop: 10
+                    }}>
 
-                <TouchableOpacity style={styles.button} onPress={this.login_Function}>
-                    <Text style={styles.text}>LOGIN</Text>
-                </TouchableOpacity>
+                    <Text style={{
+                        fontSize: 20,
+                        fontWeight: '600'
+                    }}>
+                        Account Balance
+                    </Text>
 
-                <TouchableOpacity style={styles.button} onPress={this.tpno_Function}>
-                    <Text style={styles.text}>GET STARTED</Text>
-                </TouchableOpacity>
+                    <Text style={{
+                        fontSize: 20,
+                        fontWeight: '600'
+                    }}>
+                        4500
+                    </Text>
+
+                </CardView>
 
             </View>
 
@@ -50,8 +62,9 @@ const styles = StyleSheet.create({
     MainContainer: {
         justifyContent: 'center',
         alignItems: 'center',
-        flex: 1,
-        margin: 50
+        // flex: 1,
+        // margin: 50
+        marginTop: 20
     },
 
     TextInputStyleClass: {
@@ -65,12 +78,12 @@ const styles = StyleSheet.create({
     },
 
     button: {
-        width: '80%',
+        width: '70%',
         paddingTop: 2,
         paddingBottom: 2,
         backgroundColor: '#0099ff',
-        borderRadius: 3,
-        marginTop: 20,
+        borderRadius: 20,
+        marginTop: 10,
     },
     text: {
         color: '#fff',
@@ -91,11 +104,10 @@ const styles = StyleSheet.create({
     },
 
     img: {
-        width: 110,
-        height: 110,
+        width: 350,
+        height: 150,
         marginBottom: 5
     },
-
 
     forgotPassword: {
         width: '100%',
