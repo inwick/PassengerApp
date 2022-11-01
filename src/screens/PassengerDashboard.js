@@ -1,12 +1,29 @@
 import React, { Component } from "react";
 import { StyleSheet, View, TouchableOpacity, Text, Image } from "react-native";
-import CardView from 'react-native-cardview'
+import CardView from 'react-native-cardview';
+import axios from 'react-native-axios';
 
 export default class StartScreen extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            wallets: [],
         }
+    }
+
+    componentDidMount() {
+        //192.168.1.111
+        //10.0.2.2:
+        console.log("before");
+
+        axios.get('http://192.168.1.111:5050/wallet')
+            .then(response => {
+                this.setState({ wallets: response.data })
+                console.log("gg", this.state.wallets[0].accountBalance);
+            })
+            .catch((error) => {
+                console.log(error);
+            })
     }
 
     topupFunction = () => {
@@ -24,7 +41,7 @@ export default class StartScreen extends Component {
                     cardMaxElevation={5}
                     cornerRadius={10}
                     style={{
-                        backgroundColor: 'rgb(144, 238, 144)',
+                        backgroundColor: 'rgba(0, 254, 8, 1)',
                         padding: 15,
                         width: "90%",
                         alignItems: 'center',
@@ -40,9 +57,17 @@ export default class StartScreen extends Component {
 
                     <Text style={{
                         fontSize: 20,
-                        fontWeight: '600'
+                        fontWeight: '900'
                     }}>
-                        4500
+                        {this.state.wallets.map(wallet => (
+                            <View key={wallet._id}>
+
+                                <Text style={{ fontSize: 20, fontWeight: '900' }}>
+                                    LKR.{wallet.accountBalance}
+                                </Text>
+
+                            </View>
+                        ))}
                     </Text>
 
                 </CardView>
@@ -68,9 +93,9 @@ export default class StartScreen extends Component {
 
                     <Text style={{
                         fontSize: 20,
-                        fontWeight: '600'
+                        fontWeight: '900'
                     }}>
-                        1200
+                        Active
                     </Text>
 
                 </CardView>
@@ -91,14 +116,14 @@ export default class StartScreen extends Component {
                         fontSize: 20,
                         fontWeight: '600',
                     }}>
-                        But Day Pass
+                        Your Fine Amount
                     </Text>
 
                     <Text style={{
                         fontSize: 20,
-                        fontWeight: '600'
+                        fontWeight: '900'
                     }}>
-                        500
+                        LKR.500
                     </Text>
 
                 </CardView>
@@ -116,7 +141,7 @@ export default class StartScreen extends Component {
                 </TouchableOpacity>
 
                 <TouchableOpacity style={styles.button}>
-                    <Text style={styles.text}>But Day Pass </Text>
+                    <Text style={styles.text}>Buy Day Pass </Text>
                 </TouchableOpacity>
 
             </View>
@@ -149,7 +174,7 @@ const styles = StyleSheet.create({
         width: '70%',
         paddingTop: 2,
         paddingBottom: 2,
-        backgroundColor: '#0099ff',
+        backgroundColor: '#29b051',
         borderRadius: 20,
         marginTop: 10,
     },
