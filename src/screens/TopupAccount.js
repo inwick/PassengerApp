@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, View, TouchableOpacity, Text, Image, TextInput } from "react-native";
+import { StyleSheet, View, TouchableOpacity, Text, Image, TextInput, Alert } from "react-native";
 import CardView from 'react-native-cardview'
 import axios from 'react-native-axios';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
@@ -61,7 +61,14 @@ export default class TopupAccount extends Component {
 
             try {
                 axios.post('http://192.168.1.111:5050/wallet/updateamount/' + this.state.id, updateData)
-                alert('Your Account Balance is Successfully Updated! ');
+
+                Alert.alert(
+                    "Done",
+                    "Successfully Recharged!",
+                    [
+                        { text: "OK", onPress: () => this.componentDidMount() }
+                    ]
+                );
             } catch (error) {
                 alert('Please Try Again, Something Went Wrong!');
             }
@@ -86,6 +93,10 @@ export default class TopupAccount extends Component {
         this.setState({
             isVisible: true
         })
+    }
+
+    sum = (a, b) => {
+        return a + b;
     }
 
     render() {

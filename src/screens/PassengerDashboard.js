@@ -12,14 +12,10 @@ export default class StartScreen extends Component {
     }
 
     componentDidMount() {
-        //192.168.1.111
-        //10.0.2.2:
-        console.log("before");
 
         axios.get('http://192.168.1.111:5050/wallet')
             .then(response => {
                 this.setState({ wallets: response.data })
-                console.log("gg", this.state.wallets[0].accountBalance);
             })
             .catch((error) => {
                 console.log(error);
